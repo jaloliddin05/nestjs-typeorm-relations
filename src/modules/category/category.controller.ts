@@ -42,7 +42,7 @@ export class CategoryController {
     description: 'The category was returned successfully',
   })
   @HttpCode(HttpStatus.OK)
-  async getMe(@Param('id') id: string): Promise<Category> {
+  async getOne(@Param('id') id: string): Promise<Category> {
     return this.categoryService.getOne(id);
   }
 
