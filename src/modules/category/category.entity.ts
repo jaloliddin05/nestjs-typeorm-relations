@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  BaseEntity,
+  ManyToMany,
+} from 'typeorm';
+import { Market } from '../market/market.entity';
 
 @Entity({ name: 'category' })
 export class Category extends BaseEntity {
@@ -10,4 +17,10 @@ export class Category extends BaseEntity {
     name: 'title',
   })
   title: string;
+
+  @ManyToMany(() => Market, (market) => market.categories, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
+  markets: Market[];
 }
