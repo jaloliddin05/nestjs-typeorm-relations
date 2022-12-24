@@ -13,7 +13,12 @@ import {
 
 import { DeleteResult, InsertResult, UpdateResult } from 'typeorm';
 
-import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiTags,
+  ApiOperation,
+} from '@nestjs/swagger';
 
 import { Product } from './product.entity';
 import { ProductService } from './product.service';
@@ -25,6 +30,7 @@ export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Get('/')
+  @ApiOperation({ summary: 'Method: returns all products' })
   @ApiOkResponse({
     description: 'The products were returned successfully',
   })
@@ -38,6 +44,7 @@ export class ProductController {
   }
 
   @Get('/:id')
+  @ApiOperation({ summary: 'Method: returns product by id' })
   @ApiOkResponse({
     description: 'The product was returned successfully',
   })
@@ -47,6 +54,7 @@ export class ProductController {
   }
 
   @Post('/')
+  @ApiOperation({ summary: 'Method: creates new product' })
   @ApiCreatedResponse({
     description: 'The product was created successfully',
   })
@@ -62,6 +70,7 @@ export class ProductController {
   }
 
   @Patch('/:id')
+  @ApiOperation({ summary: 'Method: updates product by id' })
   @ApiOkResponse({
     description: 'Product was changed',
   })
@@ -78,6 +87,7 @@ export class ProductController {
   }
 
   @Delete('/:id')
+  @ApiOperation({ summary: 'Method: deletes product by id' })
   @ApiOkResponse({
     description: 'Product was deleted',
   })
