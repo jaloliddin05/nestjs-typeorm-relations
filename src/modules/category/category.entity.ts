@@ -4,8 +4,10 @@ import {
   PrimaryGeneratedColumn,
   BaseEntity,
   ManyToMany,
+  OneToMany,
 } from 'typeorm';
 import { Market } from '../market/market.entity';
+import { Product } from '../product/product.entity';
 
 @Entity({ name: 'category' })
 export class Category extends BaseEntity {
@@ -23,4 +25,7 @@ export class Category extends BaseEntity {
     onDelete: 'CASCADE',
   })
   markets: Market[];
+
+  @OneToMany(() => Product, (product) => product.category)
+  products: Product[];
 }
