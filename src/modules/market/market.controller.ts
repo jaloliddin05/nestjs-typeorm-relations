@@ -13,7 +13,12 @@ import {
 
 import { DeleteResult, InsertResult, UpdateResult } from 'typeorm';
 
-import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiTags,
+  ApiOperation,
+} from '@nestjs/swagger';
 
 import { Market } from './market.entity';
 import { MarketService } from './market.service';
@@ -25,6 +30,7 @@ export class MarketController {
   constructor(private readonly marketService: MarketService) {}
 
   @Get('/')
+  @ApiOperation({ summary: 'Method: returns all markets' })
   @ApiOkResponse({
     description: 'The markets were returned successfully',
   })
@@ -38,6 +44,7 @@ export class MarketController {
   }
 
   @Get('/:id')
+  @ApiOperation({ summary: 'Method: returns single market by id' })
   @ApiOkResponse({
     description: 'The market was returned successfully',
   })
@@ -47,6 +54,7 @@ export class MarketController {
   }
 
   @Get('/category/:id')
+  @ApiOperation({ summary: 'Method: returns markets by category' })
   @ApiOkResponse({
     description: 'The markets was returned by category',
   })
@@ -58,6 +66,7 @@ export class MarketController {
   }
 
   @Post('/')
+  @ApiOperation({ summary: 'Method: creates new market' })
   @ApiCreatedResponse({
     description: 'The market was created successfully',
   })
@@ -71,6 +80,7 @@ export class MarketController {
   }
 
   @Post('/category')
+  @ApiOperation({ summary: 'Method: adds category to market' })
   @ApiCreatedResponse({
     description: 'The category was added to market successfully',
   })
@@ -84,6 +94,7 @@ export class MarketController {
   }
 
   @Patch('/:id')
+  @ApiOperation({ summary: 'Method: updates market by id' })
   @ApiOkResponse({
     description: 'Market was changed',
   })
@@ -100,6 +111,7 @@ export class MarketController {
   }
 
   @Delete('/:id')
+  @ApiOperation({ summary: 'Method: deletes market by id' })
   @ApiOkResponse({
     description: 'Market was deleted',
   })
@@ -113,6 +125,7 @@ export class MarketController {
   }
 
   @Delete('/category/delete')
+  @ApiOperation({ summary: 'Method: delete category from market' })
   @ApiOkResponse({
     description: 'The category was deleted from market',
   })

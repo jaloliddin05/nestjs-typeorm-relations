@@ -13,7 +13,12 @@ import {
 
 import { DeleteResult, InsertResult, UpdateResult } from 'typeorm';
 
-import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiTags,
+  ApiOperation,
+} from '@nestjs/swagger';
 
 import { Category } from './category.entity';
 import { CategoryService } from './category.service';
@@ -25,6 +30,7 @@ export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
   @Get('/')
+  @ApiOperation({ summary: 'Method: returns all categories' })
   @ApiOkResponse({
     description: 'The categories were returned successfully',
   })
@@ -38,6 +44,7 @@ export class CategoryController {
   }
 
   @Get('/:id')
+  @ApiOperation({ summary: 'Method: returns single category by id' })
   @ApiOkResponse({
     description: 'The category was returned successfully',
   })
@@ -47,6 +54,7 @@ export class CategoryController {
   }
 
   @Post('/')
+  @ApiOperation({ summary: 'Method: creates new category' })
   @ApiCreatedResponse({
     description: 'The category was created successfully',
   })
@@ -62,6 +70,7 @@ export class CategoryController {
   }
 
   @Patch('/:id')
+  @ApiOperation({ summary: 'Method: updates category by id' })
   @ApiOkResponse({
     description: 'Category was changed',
   })
@@ -78,6 +87,7 @@ export class CategoryController {
   }
 
   @Delete('/:id')
+  @ApiOperation({ summary: 'Method: deletes category by id' })
   @ApiOkResponse({
     description: 'Category was deleted',
   })
